@@ -11,6 +11,8 @@ NewsReader.Views.FeedIndexItem = Backbone.View.extend({
 
   tagName: 'li',
 
+  className: 'list-group-item',
+
   render: function () {
     console.log('rendering');
     var renderedContent = this.template({feed: this.model});
