@@ -13,6 +13,7 @@ NewsReader.Views.FeedNew = Backbone.View.extend({
 
   createFeed: function(event) {
     event.preventDefault();
+    event.target.reset();
     var data = $(event.target).serializeJSON();
     console.log(data);
     this.model.save(data, {

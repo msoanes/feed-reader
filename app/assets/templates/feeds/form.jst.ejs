@@ -1,10 +1,11 @@
-<h2>New Feed</h2>
-<div class="col-md-4">
 <form>
-  <div class="form-group">
-    <label for="feed-url-input">Feed URL:</label>
-    <input class="form-control" type="text" name="url" id="feed-url-input" value="<%= feed.escape('url') %>">
-  </div>
-  <input type="submit" value="Save feed" class="btn btn-primary">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <input class="form-control" type="text" name="url" id="feed-url-input" value="<%= feed.escape('url') %>" placeholder="http://xkcd.com/rss.xml">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <input type="submit" value="Add feed" class="btn btn-primary float-right">
+    </div>
 </form>
-</div>
