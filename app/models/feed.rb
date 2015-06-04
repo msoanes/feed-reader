@@ -1,22 +1,26 @@
 require 'open-uri'
 
 class Feed < ActiveRecord::Base
-  has_many :entries, :dependent => :destroy
+  has_many :entries, dependent: :destroy
+
+  validates_format_of :url, with: /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 
   def self.find_or_create_by_url(url)
     feed = Feed.find_by_url(url)
     return feed if feed
 
+    feed = Feed.new(url: url)
+    return false unless feed.valid?
     begin
       feed_data = SimpleRSS.parse(open(url))
-      feed = Feed.create!(title: feed_data.title, url: url)
+      feed.title = feed_data.title
+      feed.save
       feed_data.entries.each do |entry_data|
         Entry.create_from_json!(entry_data, feed)
       end
     rescue SimpleRSSError
       return nil
     end
-
     feed
   end
 
