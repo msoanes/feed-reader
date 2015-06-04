@@ -1,10 +1,10 @@
 class Api::FeedsController < ApplicationController
   def index
-    render :json => Feed.all
+    render json: Feed.all
   end
 
   def show
-    render :json => Feed.find(params[:id])
+    render json: Feed.find(params[:id]), include: :latest_entries
   end
 
   def create
