@@ -2,14 +2,15 @@ NewsReader.Views.FeedIndexItem = Backbone.View.extend({
   template: JST['feeds/index_item'],
 
   events: {
-    'click button.delete': 'deleteFeed'
+    'click button.delete': 'deleteFeed',
+    'click': 'visitFeed'
   },
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  tagName: 'li',
+  tagName: 'a',
 
   className: 'list-group-item',
 
@@ -21,8 +22,13 @@ NewsReader.Views.FeedIndexItem = Backbone.View.extend({
   },
 
   deleteFeed: function (event) {
+    event.stopPropagation();
     console.log("In deleteFeed");
     // event.preventDefault();
     this.model.destroy();
+  },
+
+  visitFeed: function (event) {
+    Backbone.history.navigate('#/feeds/' + this.model.id);
   }
 });

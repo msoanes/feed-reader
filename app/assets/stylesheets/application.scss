@@ -21,9 +21,17 @@ button.delete, button.refresh, .float-right {
 .jumbotron {
   background-image: url(/assets/images/jumbotron.png);
   background-size: cover;
-  height: 300px;
 }
 
 .jumbotron h1 {
   text-shadow: 3px 3px 15px white;
+}
+
+.center {
+  display: block;
+  margin: auto;
+}
+
+.btn-margin {
+  margin: 12px 12px 0px 0px;
 }
